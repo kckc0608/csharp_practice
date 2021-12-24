@@ -3,8 +3,53 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:core="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:GridPractice"
         mc:Ignorable="d"
         Title="MainWindow" Width="800" Height="600">
 
+    <Window.Resources>
+        <!--
+            GetValues 메소드의 리턴값을 xaml에서 리소스로 쓰기위해 정의한다.
+            GetValues 메소드는 Enum 클래스의 메소드 이다. (object type == 메소드의 실행 주체)
+            GetValues 메소드의 인자로 Status enum의 typeof() 반환값을 넘긴다. (x:Type Type == typeof)
+        -->
+        <ObjectDataProvider x:Key = "enumResource" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="local:Status"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel>
+            
+        </StackPanel>
+
+        <DataGrid Grid.Column="1" x:Name="dataGrid" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="text" Binding="{Binding Path=text}"/>
+                <!--
+                    // 얘도 보류
+                    <DataGridHyperlinkColum 
+                    Header="link" 
+                    Binding="{Binding email}"
+                    ContentBinding="{Binding email, Converter={}}"
+                    />
+                -->
+                <DataGridCheckBoxColumn Header="checkbox" Binding="{Binding isChecked}"/>
+                <DataGridComboBoxColumn Header="combobox" SelectedItemBinding="{Binding status}" ItemsSource="{Binding Source={StaticResource enumResource}}"/>
+                <!--
+                    // 일단 보류
+                    <DataGridTemplateColum Header="template" Binding="{Binding}"/>
+                -->
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
 </Window>

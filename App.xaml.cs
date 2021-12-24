@@ -3,7 +3,7 @@
 
 using System.Windows;
 
-namespace WindowActivationAndDeactivation
+namespace GridPractice
 {
     /// <summary>
     ///     Interaction logic for App.xaml
