@@ -27,29 +27,37 @@
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        <StackPanel>
-            
-        </StackPanel>
 
-        <DataGrid Grid.Column="1" x:Name="dataGrid" AutoGenerateColumns="False" CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="text" Binding="{Binding Path=text}"/>
-                <!--
-                    // 얘도 보류
-                    <DataGridHyperlinkColum 
-                    Header="link" 
-                    Binding="{Binding email}"
-                    ContentBinding="{Binding email, Converter={}}"
-                    />
-                -->
-                <DataGridCheckBoxColumn Header="checkbox" Binding="{Binding isChecked}"/>
-                <DataGridComboBoxColumn Header="combobox" SelectedItemBinding="{Binding status}" ItemsSource="{Binding Source={StaticResource enumResource}}"/>
-                <!--
-                    // 일단 보류
-                    <DataGridTemplateColum Header="template" Binding="{Binding}"/>
-                -->
-            </DataGrid.Columns>
-        </DataGrid>
+        <Grid Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="0" Width="50" Click="ButtonOnClick">To Excel</Button>
+
+                <DataGrid Grid.Row="1" x:Name="dataGrid" AutoGenerateColumns="False" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="text" Binding="{Binding Path=text}"/>
+                        <!--
+                            // 얘도 보류
+                            <DataGridHyperlinkColum 
+                            Header="link" 
+                            Binding="{Binding email}"
+                            ContentBinding="{Binding email, Converter={}}"
+                            />
+                        -->
+                        <DataGridCheckBoxColumn Header="checkbox" Binding="{Binding isChecked}"/>
+                        <DataGridComboBoxColumn Header="combobox" SelectedItemBinding="{Binding status}" ItemsSource="{Binding Source={StaticResource enumResource}}"/>
+                        <!--
+                            // 일단 보류
+                            <DataGridTemplateColum Header="template" Binding="{Binding}"/>
+                        -->
+                    </DataGrid.Columns>
+                </DataGrid>
+                
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
